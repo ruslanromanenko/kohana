@@ -37,6 +37,28 @@ class Controller_Auth extends Controller_Template {
 		$this->template->content = View::factory('v_auth', $data);
 	}
 	
+	public function action_reg()
+	{
+		$data = array();
+		if(isset($_POST['btnsubmit']))
+		{
+			$email = Arr::get($_POST,'email','');
+			$regcodevalue = Arr::get($_POST,'regcodevalue');
+			
+			$register = new Model_Register();
+			if($register->reg($email, $regcodevalue))
+			{
+				$data["regok"]="";
+			}
+			else
+			{
+				$data["error"]="";
+			}
+		}
+				
+		$this->template->content = View::factory('v_reg',$data);
+	}
+	
 	public function action_hpass()
 	{
 		$auth = Auth::instance();
