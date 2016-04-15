@@ -1,0 +1,1 @@
+<p style="text-align:center">Обработанно контроллером Page</p>
